@@ -18,7 +18,7 @@ For example, `a = [1,2,3]` and `b = [3,2,1]`. For elements `0` , Bob is awarded 
 
 
 
-####Function Description
+### Function Description
 Complete the function compareTriplets in the editor below. It must return an array of two integers, the first being Alice's score and the second being Bob's.
 
 compareTriplets has the following parameter(s):
@@ -26,32 +26,32 @@ compareTriplets has the following parameter(s):
 * a: an array of integers representing Alice's challenge rating
 * b: an array of integers representing Bob's challenge rating
 
-####Input Format
+### Input Format
 The first line contains `3` space-separated integers, `a[0]`, `a[1]`, and `a[2]`, describing the respective values in triplet `a`.
 The second line contains `3` space-separated integers, `b[0]`, `b[1]`, and `b[2]`, describing the respective values in triplet `b`.
 
-####Constraints
+### Constraints
 * `1 =< a[i] =< 100`
 * `1 =< b[i] =< 100`
 
-####Output Format
+### Output Format
 Return an array of two integers denoting the respective comparison points earned by Alice and Bob.
 
-####Sample Input 0
+### Sample Input 0
 
 ```
 5 6 7
 3 6 10
 ```
 
-####Sample Output 0
+### Sample Output 0
 
 ```
 1 1
 ```
 
 
-####Explanation 0
+### Explanation 0
 
 In this example:
 
@@ -66,28 +66,28 @@ Now, let's compare each individual score:
 
 Alice's comparison score is `1`, and Bob's comparison score is `1`. Thus, we return the array `[1,1]`.
 
-####Sample Input 1
+### Sample Input 1
 
 ```
 17 28 30
 99 16 8
 ```
 
-####Sample Output 1
+### Sample Output 1
 
 ```
 2 1
 ```
 
 
-####Explanation 1
+### Explanation 1
 
 Comparing the `0th` elements, `17 < 99` so Bob receives a point.
 Comparing the `1st` and `2nd` elements, `28 > 16` and `30 > 8` so Alice receives two points.
 The return array is `2,1`.
 
 
-####Solution
+### Solution
 
 ```javascript
 'use strict';
