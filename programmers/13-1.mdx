@@ -1,0 +1,95 @@
+# 음양 더하기
+
+## 문제 설명
+
+어떤 정수들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을 구하여 return 하도록 solution 함수를 완성해주세요.
+
+<br />
+
+## 제한 사항
+
+- absolutes의 길이는 1 이상 1,000 이하입니다.
+  - absolutes의 모든 수는 각각 1이상 1,000 이하 입니다.
+- signs의 길이는 absolutes의 길이와 같습니다.
+  - `sign[i]`가 참이면 `absolutes[i]`의 실제 정수가 양수임을, 그렇지 않으면 음수임을 의미합니다.
+
+<br />
+
+## 입출력 예
+
+|  absolutes   |         signs          | result |
+| :----------: | :--------------------: | :----: |
+| `[4, 7, 12]` | `[true, false, true]`  |   9    |
+| `[1, 2, 3]`  | `[false, false, true]` |   0    |
+
+<br />
+
+## 입출역 예 설명
+
+### 입출력 예 #1
+
+- sign가 `[true, false, true]` 이므로, 실제 수들의 값은 각각 4, -7, 12 입니다.
+- 따라서 세 수의 합인 9를 return 해야 합니다.
+
+### 입출력 예 #2
+
+- sign가 [false, false, true] 이므로, 실제 수들의 값은 각각 -1, 2, 3 입니다.
+- 따라서 세 수의 합인 0을 return 해야 합니다.
+
+<br />
+
+## solution.js
+
+```JS
+
+const constraintCheck = (absolutes, signs) =>
+    absolutes.length >= 1 &&
+    absolutes.length <= 1000 &&
+    absolutes.length === signs.length;
+
+function solution(absolutes, signs) {
+    const answer = constraintCheck(absolutes, signs)
+        ? absolutes.reduce((acc, cur, i) => (signs[i] ? acc + cur : acc - cur), 0)
+        : "constraint violated";
+
+    return answer;
+}
+
+```
+
+<br />
+
+## 다른 사람의 풀이 살펴보기
+
+```JS
+function solution(absolutes, signs) {
+
+    return absolutes.reduce((acc, val, i) => acc + (val * (signs[i] ? 1 : -1)), 0);
+}
+```
+
+<br />
+
+```JS
+var solution = (absolutes, signs) => absolutes.reduce((acc, x, i) => acc + (x * (signs[i] ? 1 : -1)), 0);
+```
+
+<br />
+
+**다른 사람의 풀이를 보고 코드 수정해보기**
+
+```JS
+answer += signs[i] ? absolutes[i] : -absolutes[i]; // 스터디원 코드
+
+signs[i] ? acc + cur : acc - cur  // 내 코드
+acc += signs[i] ? +cur : -cur // 코드 수정하기
+```
+
+<br />
+
+## 지식 쌓아가기
+
+🔗 [Array.prototype.reduce()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)  
+🔗 [자바스크립트 객체 배열에서 indexOf 사용방법](https://yeolco.tistory.com/157)
+
+<br />
