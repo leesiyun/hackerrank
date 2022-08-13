@@ -1,0 +1,98 @@
+# Solve Me First
+
+두 정수의 합을 게산하는 soveMeFirst 함수를 완성하십시오.
+
+<br />
+
+## 예시
+
+```
+a = 7
+b = 3
+Return 10.
+```
+
+<br />
+
+## 기능 설명
+
+solveMeFirst의 기능을 완성하세요.  
+solveMeFirst에는 다음 매개 변수가 있습니다.
+
+- int a : 첫 번째 값
+- int b : 두 번째 값
+
+반환 값
+
+- int : a 그리고 b의 합계
+
+<br />
+
+## 제약
+
+```
+1 ≤ a, b ≤ 1000
+```
+
+<br />
+
+## 샘플 입력
+
+```
+a = 2
+a = 3
+```
+
+<br />
+
+## 샘플 출력
+
+```
+5
+```
+
+<br />
+
+## 설명
+
+```
+2 + 3 = 5
+```
+
+## solution
+
+```JS
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();    
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+const solveMeFirst = (a, b) => a + b;
+const constraintCheck = (a, b) => a >= 1 && a <= 1000 && b >= 1 && b <= 1000;
+
+function main() {
+    var a = parseInt(readLine());
+    var b = parseInt(readLine());;
+    
+    const res = constraintCheck(a, b)
+      ? solveMeFirst(a, b)
+      : "constraint violated";
+        
+    console.log(res);
+}
+```
