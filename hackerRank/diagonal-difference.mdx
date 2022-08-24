@@ -1,0 +1,137 @@
+# Diagonal Difference
+
+🔗 [Problem](https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen=true)
+
+정사각 행렬이 주어지면 대각선의 합 사이의 절대 차이를 계산합니다.
+
+예를 들어, 정방 행렬 `arr` 아래에 나와 있습니다.
+
+```
+1 2 3
+4 5 6
+9 8 9
+```
+
+왼쪽에서 오른쪽 대각선 = `1 + 5 + 9 = 15`. 오른쪽에서 왼쪽 대각선 = `3 + 5 + 19 = 17`. 그들의 절대적인 차이는 `|15 - 17| = 2`.
+
+<br />
+
+## 기능 설명
+
+완료 `diagonalDifference` 아래 편집기에서 기능.
+
+대각선 차이는 다음 매개변수를 사용합니다.
+
+- int arr[n][m] : 정수 배열
+
+<br />
+
+## Return
+
+- int : 절대 대각선 차이
+
+<br />
+
+## 입력 형식
+
+첫 번째 줄에는 단일 정수가 포함되어 있습니다. `n`, 정방 행렬의 행과 열 개수 `arr`.
+각각의 다음 `n`선은 행을 설명하고, `arr[i]`, 및 구성 `n`공백으로 구분된 정수.
+
+<br />
+
+## 제약
+
+- `-100 ≤ arr[i][j] ≤ 100`
+
+<br />
+
+## 출력 형식
+
+행렬의 두 대각선 합 간의 절대 차이를 단일 정수로 반환합니다.
+
+<br />
+
+## 샘플 입력
+
+```
+3
+11 2 4
+4 5 6
+10 8 -12
+```
+
+<br />
+
+## 샘플 출력
+
+```
+15
+```
+
+<br />
+
+## 설명
+
+기본 대각선은 다음과 같습니다.
+
+```
+11
+   5
+     -12
+```
+
+기본 대각선의 합계: 11 + 5 - 12 = 4
+
+보조 대각선은 다음과 같습니다.
+
+```
+     4
+   5
+10
+```
+
+두 번째 대각선의 합: 4 + 5 + 10 = 19
+차이: |4 - 19| = 15
+
+<br />
+
+## 참고
+
+|x| x 의 절대값 입니다.
+
+<br />
+
+## solution
+
+```JS
+  const diagonalDifference = (arr) =>
+    Math.abs(
+      arr
+        .map((v, i) => v[i] - v[v.length - 1 - i])
+        .reduce((acc, cur) => acc + cur)
+    );
+```
+
+<br />
+
+## 지식 쌓아가기
+
+🔗 [[JavaScript] 자바스크립트 2차원 배열 선언 및 사용법](https://gent.tistory.com/296)
+
+```
+// arr[5][2] (빈 배열 생성)
+const arr1 = Array.from(Array(5), () => new Array(2)
+
+// arr[5][2] (null로 초기화하여 생성)
+const arr2 = Array.from(Array(5), () => Array(2).fill(null))
+```
+
+<br />
+
+🔗 [Array.prototype.fill()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)
+
+<br />
+
+🔗 [Math.abs()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/abs)
+
+<br />
