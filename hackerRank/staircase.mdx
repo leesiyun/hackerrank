@@ -1,0 +1,158 @@
+# Staircase
+
+🔗 [Problem](https://www.hackerrank.com/challenges/staircase/problem?isFullScreen=true)
+
+계단 디테일
+
+사이즈의 계단입니다 `n = 4` :
+
+```
+   #
+  ##
+ ###
+####
+```
+
+그것의 밑변과 높이는 둘 다 `n`과 같다. #기호와 공백 을 사용하여 그립니다 . 마지막 줄에는 공백이 없습니다.
+
+`n` 크기의 계단을 출력하는 프로그램을 작성하십시오.
+
+<br />
+
+## 기능 설명
+
+아래 편집기에서 계단 기능을 완성 하세요.
+
+계단에는 다음 매개변수가 있습니다.
+
+- int n : 정수
+
+<br />
+
+## Return
+
+위에서 설명한 대로 계단을 인쇄합니다.
+
+<br />
+
+## 입력 형식
+
+단일 정수,`n`, 계단의 크기를 나타냅니다.
+
+<br />
+
+## 제약
+
+`0 < n ≤ 100`
+
+<br />
+
+## 출력 형식
+
+`n`크기의 계단을 인쇄하십시오. # 기호와 공백 을 사용 합니다.
+
+참고 : 마지막 줄에는 다음이 있어야 합니다. `0` 그 안에 공백.
+
+<br />
+
+## 샘플 입력
+
+```
+6
+```
+
+<br />
+
+## 샘플 출력
+
+```
+     #
+    ##
+   ###
+  ####
+ #####
+######
+```
+
+<br />
+
+## 설명
+
+계단은 오른쪽 정렬로 #기호와 공간으로 구성되어 있으며 높이와 너비는 `n = 6`.
+
+<br />
+
+## solution
+
+```JS
+  const staircase = (n) => {
+    let answer = "";
+    for (let i = 1; i <= n; i++) {
+      answer += " ".repeat(n - i) + "#".repeat(i) + "\n";
+    }
+    return answer;
+  };
+
+  const main = () => {
+    const n = parseInt(readLine().trim(), 10);
+    console.log(staircase(n));
+  };
+
+```
+
+<br />
+
+## 다른 사람의 풀이 살펴보기
+
+```JS
+function staircase(n) {
+
+  // here we use just one for loop where i tracks the number of rows
+  // the number of rows (i) should be less than or equal to n
+    for (let i = 1; i <= n; i++) {
+      // print out a " " n-i times and append a # i times
+      // console log adds a new line by default
+
+        console.log(" ".repeat(n-i) + "#".repeat(i))
+    }
+}
+```
+
+<br />
+
+## 지식 쌓아가기
+
+🔗 [Two Ways to Solve the HackerRank Staircase Problem in Javascript](https://medium.com/@alireubenstone/two-ways-to-solve-the-hackerrank-staircase-problem-in-javascript-8036d2254567)  
+🔗 [String.prototype.repeat()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/repeat)  
+`repeat()` 메서드는 문자열을 주어진 횟수만큼 반복해 붙인 새로운 문자열을 반환합니다.
+
+**구문**
+
+```
+str.repeat(count);
+```
+
+**매개변수**  
+`count`
+문자열을 반복할 횟수. 0과 양의 무한대 사이의 정수([0, +∞)).
+
+**예외**
+
+- `RangeError` : 반복 횟수는 양의 정수여야 함
+- `RangeError` : 반복 횟수는 무한대보다 작아야 하며, 최;대 문자열 크기를 넘어선 안됨.
+
+**예제**
+
+```
+'abc'.repeat(-1);   // RangeError
+'abc'.repeat(0);    // ''
+'abc'.repeat(1);    // 'abc'
+'abc'.repeat(2);    // 'abcabc'
+'abc'.repeat(3.5);  // 'abcabcabc' (count will be converted to integer)
+'abc'.repeat(1/0);  // RangeError
+
+({ toString: () => 'abc', repeat: String.prototype.repeat }).repeat(2);
+// 'abcabc' (repeat() is a generic method)
+```
+
+<br />
