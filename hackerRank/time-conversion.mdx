@@ -1,0 +1,141 @@
+# Time Conversion
+
+🔗 [problem](https://www.hackerrank.com/challenges/time-conversion/problem?isFullScreen=true)
+
+주어진 시간 `12` [시간 AM/PM 형식](https://en.wikipedia.org/wiki/12-hour_clock)을 군사(24시간제) 시간으로 변환합니다.
+
+참고: - 12시간제에서 12:00:00AM은 24시간제에서 00:00:00입니다.
+
+- 12시간제 기준 12:00:00PM은 24시간제 기준 12:00:00입니다.
+
+<br />
+
+## 예시
+
+- `s = '12:01:00PM'`  
+  '12:01:00'을 반환합니다.
+
+- `s = '12:01:00AM'`  
+  '00:01:00'을 반환합니다.
+
+<br />
+
+## 기능 설명
+
+아래 에디터에서 timeConversion 함수를 완성 하세요. 입력 시간을 나타내는 새 문자열을 24시간 형식으로 반환해야 합니다.
+
+timeConversion에는 다음 매개변수가 있습니다.
+
+- string s : `12`시간 형식
+
+<br />
+
+## Return
+
+- string s : `24`시간 형식
+
+<br />
+
+## 입력 형식
+
+단일 문자열`s`의 시간을 나타내는`12`-시 시계 형식(예:`hh:mm:ss` 또는`hh:mm:ssPM`).
+
+<br />
+
+## 제약
+
+- 모든 입력 시간은 유효합니다
+
+<br />
+
+## 샘플 입력 0
+
+```
+07:05:45PM
+```
+
+<br />
+
+## 샘플 출력 0
+
+```
+19:05:45
+```
+
+<br />
+
+## solution
+
+```JS
+const timeConversion = (s) =>
+    s.slice(-2) === "AM"
+      ? s.slice(0, 8)
+      : Number(s.slice(0, 2)) + 12 + s.slice(2, 8);
+```
+
+위처럼 풀었더니 `4/10 test cases failed :(` 4개의 테스크 케이스에 실패했습니다.
+12AM일 경우 00시가 된다는 점, 12PM일 경우에는 12시가 된다는 점을 을 고려안했기 때문에 아래처럼 수정해서 풀었습니다.
+
+```JS
+const timeConversion = (s) => {
+    let answer = "";
+    s.slice(-2) === "AM" &&
+      (s.slice(0, 2) === "12"
+        ? (answer = "00" + s.slice(2, 8))
+        : (answer = s.slice(0, 8)));
+    s.slice(-2) === "PM" &&
+      (s.slice(0, 2) === "12"
+        ? (answer = "12" + s.slice(2, 8))
+        : (answer = Number(s.slice(0, 2)) + 12 + s.slice(2, 8)));
+    return answer;
+};
+```
+
+<br />
+
+## 다른 사람의 풀이 살펴보기
+
+```JS
+function timeConversion(s) {
+    // Write your code here
+
+    const [hh, mm, ss] = s.split(':');
+    const pm = s.endsWith('PM');
+    const second = ss.match(/\d+/g)[0];
+    let HH = hh;
+    if (pm) {
+        if(hh !== '12') {
+            HH = 12 + +hh;
+        }
+    } else {
+        if (hh === '12') {
+            HH = '00';
+        }
+    }
+
+    return `${HH}:${mm}:${second}`;
+}
+```
+
+<br />
+
+**다른 사람의 풀이를 보고 코드 수정해보기**
+
+```JS
+const timeConversion = (s) => {
+    let [hh, mm, ss] = s.slice(0, 8).split(":");
+    s.slice(-2) === "AM" && hh === "12" && (hh = "00");
+    s.slice(-2) === "PM" && hh !== "12" && (hh = Number(hh) + 12);
+    return `${hh}:${mm}:${ss}`;
+};
+```
+
+<br />
+
+## 지식 쌓기
+
+🔗 [String.prototype.slice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/slice)  
+🔗 [JavaScript - 문자열을 숫자로 변환하는 방법](https://codechacha.com/ko/javascript-convert-string-to-number/)  
+🔗[String.prototype.replace()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+
+<br />
