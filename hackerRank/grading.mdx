@@ -1,0 +1,134 @@
+# Grading Students
+
+🔗 [problem](https://www.hackerrank.com/challenges/grading/problem?isFullScreen=true)
+
+HackerLand University에는 다음과 같은 채점 정책이 있습니다.
+
+- 모든 학생이 받는 `grade` 의 범위 `0`에서 `100`.
+- 특정 `grade` 미만은 불합격 등급이다.
+
+Sam은 대학의 교수이며 각 학생의 `grade`는 다음 규칙에 따릅니다. :
+
+- 차이점이라면 `grade` 그리고 다음 배수 `5` 보다 작다, 둥근 `grade` 다음 배수까지.
+- 값의 경우 `grade` 보다 작다 `38`, 결과는 여전히 낙제 등급이므로 반올림이 발생하지 않습니다.
+
+<br />
+
+## 예시
+
+- `grade = 84` 반올림 `85` (85 - 84는 3보다 작음)
+- `grade = 29` 반올림하지 않음(결과는 40보다 작음)
+- `grade = 57` 반올림하지 않음(60 - 57은 3 이상)
+
+`grade` 초기 값이 주어지면 각각의 샘에게 `n` 학생들은 반올림 프로세스를 자동화하는 코드를 작성합니다.
+
+<br />
+
+## 기능 설명
+
+아래 편집기에서 gradingStudents 기능을 완료하십시오 .
+
+gradingStudents에는 다음 매개변수가 있습니다.
+
+- int grades[n] : 반올림 전의 성적
+
+<br />
+
+## Return
+
+- int[n] : 적절하게 반올림한 후의 등급
+
+<br />
+
+## 입력 형식
+
+첫 번째 줄에는 단일 정수가 포함되어 있습니다. `n`, 학생 수.
+각 라인 `i`의 `n`다음 줄에는 단일 정수가 포함됩니다. `grades[i]`.
+
+<br />
+
+## 제약
+
+- `1 ≤ n ≤ 60`
+- `0 ≤ grade[i] ≤ 100`
+
+<br />
+
+## 샘플 입력 0
+
+```
+4
+73
+67
+38
+33
+```
+
+<br />
+
+## 샘플 출력 0
+
+```
+75
+67
+40
+33
+```
+
+<br />
+
+## 설명 0
+
+![](https://s3.amazonaws.com/hr-challenge-images/0/1484768684-54439977a1-curving2.png)
+
+1. 학생 `1` 받았다 `73`, 그리고 다음 배수`5`~에서 `73`~이다. `75`부터 `75 - 73 < 3`, 학생의 성적은 반올림됩니다. `75`.
+2. 학생 `2` 받았다 `67`, 그리고 다음 배수 `5`~에서 `67`~이다. `70`부터 `70 - 67 = 3`, 성적은 수정되지 않으며 학생의 최종 성적은 `67`.
+3. 학생 `3`받았다 `38`, 그리고 다음 배수 `5`~에서 `38`~이다. `40` 부터 `40 - 38 < 3`, 학생의 성적은 반올림됩니다. `40`.
+4. 학생 `4`아래 등급을 받았다 `33`, 따라서 성적은 수정되지 않으며 학생의 최종 성적은 `33`.
+
+<br />
+
+## solution
+
+```JS
+const gradingStudents = (grades) =>
+    grades.map((grade) =>
+      grade < 38
+        ? grade
+        : grade % 10 > 5
+        ? 10 - (grade % 10) < 3
+          ? Math.ceil(grade / 5) * 5
+          : grade
+        : 5 - (grade % 10) < 3
+        ? Math.ceil(grade / 5) * 5
+        : grade
+);
+```
+
+<br />
+
+## 다른 사람의 풀이 살펴보기
+
+```Java
+System.out.println(grade < 38 || grade % 5 < 3 ? grade : grade + (5 - (grade % 5)));
+```
+
+<br />
+
+**다른 사람의 풀이를 보고 코드 수정해보기**
+
+```JS
+const gradingStudents = (grades) =>
+    grades.map((grade) =>
+      grade < 38 || grade % 5 < 3 ? grade : Math.ceil(grade / 5) * 5
+);
+```
+
+## 지식 쌓기
+
+🔗 [Number 일의 자리 구하기](https://medium.com/jongah-tech-blog/splice-slice-split-94816d793f96)  
+🔗 [[Javascript] 반올림(round), 올림(ceil), 내림(floor) - 소수점, 음수,자리수 지정](https://hianna.tistory.com/446)  
+🔗 [[Javascript] 정수 올림, 반올림, 내림하기](https://devdesigner.tistory.com/40)  
+🔗 [반올림을 하고싶은데요.. 5단위로 끊어서 반올림을 하려면 어떻게 하나요?](https://www.phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_function&wr_id=297896&page=1806)
+
+<br />
