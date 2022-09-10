@@ -1,0 +1,147 @@
+# Number Line Jumps
+
+🔗 [problem](https://www.hackerrank.com/challenges/kangaroo/problem?isFullScreen=true)
+
+당신은 다양한 동물들과 함께 서커스 쇼를 안무하고 있습니다. 한 막에서 양의 방향(즉, 양의 무한대를 향해)으로 점프할 준비가 된 두 마리의 캥거루가 숫자 줄에 표시됩니다.
+
+- 첫 번째 캥거루는 위치에서 시작합니다. `x1`의 속도로 움직입니다. `v1`점프 당 미터.
+- 두 번째 캥거루는 다음 위치에서 시작합니다. `x2`의 속도로 움직입니다.`v2`점프 당 미터.
+
+쇼의 일부로 같은 시간에 같은 위치에서 두 캥거루를 얻을 수 있는 방법을 찾아야 합니다. 가능하면 return YES하고 그렇지 않으면 return NO.
+
+## 예시
+
+```
+x1 = 2
+v1 = 1
+x2 = 1
+v2 = 2
+```
+
+한 번 점프 후 둘 다 `x = 3, (x1 + v1 = 2 + 1, x2 + v2 = 1 + 2)` 따라서 답은 `YES`입니다.
+
+<br />
+
+## 기능 설명
+
+아래 편집기에서 캥거루 기능을 완성 하세요.
+
+캥거루에는 다음 매개변수가 있습니다.
+
+- int x1, int v1 : 캥거루 1의 시작 위치 및 점프 거리
+- int x2, int v2 : 캥거루 2의 시작 위치 및 점프 거리
+
+<br />
+
+## Returns
+
+- 문자열 : `YES` 또는 `NO`
+
+<br />
+
+## 입력 형식
+
+각각의 값을 나타내는 공백으로 구분된 4개의 정수로 이루어진 한 줄, `x1`, `v1`, `x2`그리고 `v2`.
+
+<br />
+
+## 제약
+
+- `0 ≤ x1 ≤ x2 ≤ 10000`
+- `1 ≤ v1 ≤ 10000`
+- `1 ≤ v2 ≤ 10000`
+
+<br />
+
+## 샘플 입력 0
+
+```
+0 3 4 2
+```
+
+<br />
+
+## 샘플 출력 0
+
+```
+YES
+```
+
+<br />
+
+## 설명 0
+
+두 캥거루는 다음 위치 순서로 점프합니다.
+![](https://s3.amazonaws.com/hr-assets/0/1516005283-e74e76ff0c-kangaroo.png)
+
+이미지에서 캥거루가 같은 위치에서 만나는 것이 분명합니다(숫자 `12`같은 수의 점프 후( `4`점프), 그리고 우리는 YES.
+
+<br />
+
+## 샘플 입력 1
+
+```
+0 2 5 3
+```
+
+<br />
+
+## 샘플 출력 1
+
+```
+NO
+```
+
+<br />
+
+## 설명 1
+
+두 번째 캥거루는 첫 번째 캥거루의 시작 위치(즉, `x2 > x1`). 두 번째 캥거루는 더 빠른 속도로 움직이기 때문에(즉, `v2 > v1`) 이미 첫 번째 캥거루 보다 앞서 있으면 첫 번째 캥거루는 절대 따라잡을 수 없습니다. 따라서 NO 를 인쇄 합니다.
+
+<br />
+
+## solution
+
+```JS
+  const kangaroo = (x1, v1, x2, v2) => {
+    let i = 1;
+    let answer = "";
+    while (x1 + v1 * i <= x2 + v2 * i) {
+      i++;
+      answer = "NO";
+      if (x1 + v1 * i === x2 + v2 * i) {
+        answer = "YES";
+        break;
+      }
+    }
+    return answer;
+  };
+```
+
+Time limit exceeded
+Your code did not execute within the time limits. Please optimize your code. For more information on execution time limits, refer to the environment page
+
+위처럼 풀었더니 시간 초가 에러가 나서 C++ 코드를 보고 아래처럼 다시 풀었습니다.
+
+```JS
+const kangaroo = (x1, v1, x2, v2) =>
+  v1 > v2 && (x2 - x1) % (v1 - v2) === 0 ? "YES" : "NO";
+```
+
+<br />
+
+## 다른 사람의 풀이 살펴보기
+
+```C++
+string kangaroo(int x1, int v1, int x2, int v2) {
+    return v1>v2 && (x2-x1)%(v1-v2) == 0 ? "YES" : "NO";
+}
+```
+
+<br />
+
+## 지식 쌓기
+
+🔗 [루프와 반복](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Loops_and_iteration#break_%EB%AC%B8)
+
+<br />
