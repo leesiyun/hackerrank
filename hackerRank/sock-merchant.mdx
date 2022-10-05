@@ -1,0 +1,87 @@
+# Sales by Match
+
+🔗 [problem](https://www.hackerrank.com/challenges/sock-merchant/problem?isFullScreen=true)
+
+색깔별로 짝을 맞춰야 하는 양말이 많이 쌓여 있습니다. 각 양말의 색을 나타내는 정수 배열이 주어지면, 일치하는 색을 가진 양말이 몇 쌍인지 결정합니다.
+
+<br />
+
+## 예제
+
+`n = 7`
+`ar = [1, 2, 1, 2, 1, 3, 2]`
+
+한 쌍의 "1"과 한 쌍의 "2"가 있습니다. 각 색상에 하나씩, 홀수 양말이 세 개 남아 있습니다. 쌍의 수는 "2"입니다.
+
+## 기능 설명
+
+아래 편집기에서 sockMerchant 기능을 완료하십시오.
+sockMerchant에는 다음 매개 변수가 있습니다.
+
+- int n: 더미의 양말 수입니다.
+- int ar[n]: 각 양말의 색입니다.
+
+<br />
+
+## Returns
+
+- int: 쌍의 수
+
+<br />
+
+## 입력 형식
+
+첫 번째 줄에는 정수 `n`이 포함되어 있으며, 이는 `ar`로 표현되는 양말의 수입니다.
+두 번째 줄에는 공백으로 구분된 `n`개의 정수인 `ar[i]`가 들어 있습니다. 이는 더미에 있는 양말의 색입니다.
+
+<br />
+
+## 제약
+
+- `1 ≤ n ≤ 100`
+- `1 ≤ ar[i] ≤ 100 where 0 ≤ i < n`
+
+<br />
+
+## 샘플 입력 0
+
+```
+STDIN                       Function
+-----                       --------
+9                           n = 9
+10 20 20 10 10 30 50 10 20  ar = [10, 20, 20, 10, 10, 30, 50, 10, 20]
+```
+
+<br />
+
+## 샘플 출력 0
+
+```
+3
+```
+
+<br />
+
+## 설명 0
+
+![](https://s3.amazonaws.com/hr-challenge-images/25168/1474122392-c7b9097430-sock.png)
+
+양말이 3 쌍 있습니다.
+
+<br />
+
+## solution
+
+```JS
+const sockMerchant = (n, ar) => {
+    const obj = {};
+    ar.forEach((el) => {
+      obj[el] = (obj[el] || 0) + 1;
+    });
+    return Object.values(obj)
+      .map((x) => Math.floor(x / 2))
+      .reduce((acc, cur) => acc + cur);
+};
+```
+
+<br />
