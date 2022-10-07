@@ -1,0 +1,167 @@
+# Drawing Book
+
+🔗 [problem](https://www.hackerrank.com/challenges/drawing-book/problem?isFullScreen=true)
+
+한 선생님이 반 학생들에게 책 한 페이지 번호를 열어보라고 합니다. 학생은 책의 앞부분이나 뒷부분에서 페이지를 넘기기 시작할 수 있습니다. 그들은 항상 한 페이지씩 넘깁니다. 그들이 책을 열 때, `1` 페이지는 항상 오른쪽에 있습니다.
+
+![](https://s3.amazonaws.com/hr-challenge-images/0/1481920803-d2b54f38f0-book.png)
+
+그들이 `1` 페이지를 넘길 때, 그들은 `2`와 `3` 페이지를 봅니다. 마지막 페이지를 제외한 각 페이지는 항상 양쪽에 인쇄됩니다. 책의 길이를 고려하여 마지막 페이지는 앞면에만 인쇄할 수 있습니다. 만약 책이 `n`페이지이고, 학생이 `p`페이지로 넘기길 원한다면, 넘길 수 있는 최소 페이지 수는 몇 페이지입니까? 그들은 책의 처음이나 끝에서 시작할 수 있습니다.
+
+`n`과 `p`가 주어지면, `p` 페이지에 도착하기 위해 넘어야 할 최소 페이지 수를 찾아 인쇄합니다.
+
+<br />
+
+## 예제
+
+`n = 5`
+`p = 3`
+
+![](https://s3.amazonaws.com/hr-challenge-images/22564/1467398281-32b69f6fa9-UntitledDiagram4.png)
+
+위의 도표를 사용하여 학생이 `3`페이지로 이동하기를 원할 경우, 책을 `1`페이지로 열고 `1`페이지로 넘기면 올바른 페이지에 있습니다. 만약 그들이 책을 마지막 페이지인 `5`페이지까지 열면, 그들은 `1`페이지를 펴고 올바른 페이지에 있습니다. `1`을 반환합니다.
+
+## 기능 설명
+
+아래 편집기에서 pageCount 기능을 완료합니다.
+pageCount에는 다음 매개 변수가 있습니다.
+
+- int n: 책의 페이지 수
+- int p: 이동할 페이지 번호
+
+<br />
+
+## Returns
+
+- int: 넘길 최소 페이지 수
+
+<br />
+
+## 입력 형식
+
+첫 번째 행은 책의 페이지 수인 정수 "n"을 포함합니다.
+두 번째 줄에는 표시할 페이지인 정수 "p"가 포함됩니다.
+
+<br />
+
+## 제약
+
+- `1 ≤ n ≤ 10^5`
+- `1 ≤ p ≤ n`
+
+<br />
+
+## 샘플 입력 0
+
+```
+6
+2
+```
+
+<br />
+
+## 샘플 출력 0
+
+```
+1
+```
+
+<br />
+
+## 설명 0
+
+학생이 `1`페이지에서 넘기 시작하면 `1`페이지만 넘기면 됩니다.
+
+![](https://s3.amazonaws.com/hr-challenge-images/22564/1467398713-1decf68d06-UntitledDiagram6.png)
+
+학생이 `6`페이지부터 넘기 시작하면, `2`페이지를 넘길 필요가 있습니다.
+
+![](https://s3.amazonaws.com/hr-challenge-images/22564/1467397150-52d0a8213b-UntitledDiagram3.png)
+
+최소값 `1`을 반환합니다.
+
+<br />
+
+## 샘플 입력 1
+
+```
+5
+4
+```
+
+<br />
+
+## 샘플 출력 1
+
+```
+0
+```
+
+<br />
+
+## 설명 1
+
+학생이 `1`페이지에서 넘기 시작하면 `2`페이지를 넘길 필요가 있습니다.
+
+![](https://s3.amazonaws.com/hr-challenge-images/22564/1467398281-32b69f6fa9-UntitledDiagram4.png)
+
+페이지 `5`에서 페이지를 넘기 시작하면 페이지를 넘길 필요가 없습니다.
+
+![](https://s3.amazonaws.com/hr-challenge-images/22564/1467398392-5d9ac72e45-UntitledDiagram5.png)
+
+최소값 `0`을 반환합니다.
+
+<br />
+
+## solution
+
+```JS
+const pageCount = (n, p) =>
+    Math.floor(
+      n % 2 === 0 && p % 2 !== 0
+        ? Math.min(p / 2, n / 2 - p / 2 + 1)
+        : Math.min(p / 2, n / 2 - p / 2)
+);
+```
+
+<br />
+
+처음에는 아래처럼 풀었으나 `1/27 test cases failed :(` 테스트 8에서 실패했습니다.
+
+```JS
+const pageCount = (n, p) => {
+    if (p - 1 === 0 || n - p === 0) return 0;
+    if (p - 1 <= n - p) return Math.floor(p / 2);
+    if (p - 1 > n - p)
+      return n % 2 === 0
+        ? Math.floor((n + 1 - p) / 2)
+        : Math.floor((n - p) / 2);
+};
+```
+
+## 다른 사람의 풀이 살펴보기
+
+```Python
+import sys
+
+
+n = int(raw_input().strip())
+p = int(raw_input().strip())
+
+print min(p/2,n/2-p/2)
+```
+
+<br />
+
+**다른 사람의 풀이를 보고 코드 수정해보기**
+
+```JS
+const pageCount = (n, p) =>
+    Math.floor(
+      n % 2 === 0 && p % 2 !== 0
+        ? Math.min(p / 2, n / 2 - p / 2 + 1)
+        : Math.min(p / 2, n / 2 - p / 2)
+);
+```
+
+<br />
